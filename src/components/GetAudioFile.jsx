@@ -1,33 +1,35 @@
-import React, { useState } from 'react';
-import axios from 'axios'; // Axios sends the audio file to the back end for analysis.
+// src/components/GetAudioFile.jsx
 
-const AudioRecorder = () => {
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const GetAudioFile = () => {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
     };
 
     const handleFileUpload = async () => {
-        if (!file) {
-            alert("Please upload a file first.");
-            return;
-        }
+        if (!file) return;
+        setLoading(true);
         
         const formData = new FormData();
-        formData.append("audio", file);
+        formData.append('audio', file);
 
         try {
-            setLoading(true);
-            const response = await axios.post("http://localhost:5000/upload", formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
+            const response = await axios.post('http://localhost:5000/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
 
-            console.log("Analysis Results:", response.data);
-            setLoading(false);
+            console.log('Upload response:', response.data);
+            // Here you can analyze the response further if needed
         } catch (error) {
-            console.error("Error uploading the file:", error);
+            console.error('Error uploading the file:', error);
+        } finally {
             setLoading(false);
         }
     };
@@ -43,4 +45,5 @@ const AudioRecorder = () => {
     );
 };
 
-export default AudioRecorder;
+export default GetAudioFile;
+

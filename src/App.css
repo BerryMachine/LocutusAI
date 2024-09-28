@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Set background color to black */
+    color: white; /* Set text color to white for better contrast */
+    min-height: 100vh; /* Ensure the body covers the full viewport height */
+}
+
+h1 {
+    text-align: center; /* Center the heading */
+}
