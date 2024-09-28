@@ -1,0 +1,37 @@
+/* App.css */
+
+.App {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  button {
+    background-color: #4CAF50; /* Green background */
+    color: white;              /* White text */
+    border: none;              /* Remove border */
+    padding: 10px 20px;        /* Some padding */
+    text-align: center;        /* Center the text */
+    text-decoration: none;     /* Remove underline */
+    display: inline-block;     /* Inline display */
+    font-size: 16px;           /* Increase font size */
+    margin: 10px 2px;          /* Margin around the button */
+    cursor: pointer;           /* Pointer cursor on hover */
+    border-radius: 8px;        /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  .section {
+    height: 100vh; /* Full viewport height for each section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd; /* Light border for visual separation */
+    margin: 20px 0;        /* Space between sections */
+    padding: 20px;         /* Padding inside the sections */
+    background-color: #f9f9f9; /* Light background color */
+  }
+  
