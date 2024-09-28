@@ -23,6 +23,9 @@
   button:hover {
     background-color: #45a049; /* Darker green on hover */
   }
+  buttonBottom{
+    
+  }
   
   .section {
     height: 100vh; /* Full viewport height for each section */
