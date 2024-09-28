@@ -1,49 +1,63 @@
-// src/components/GetAudioFile.jsx
-
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useRef } from 'react';
 
 const GetAudioFile = () => {
-    const [file, setFile] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [audioURL, setAudioURL] = useState('');
+    const mediaRecorderRef = useRef(null);
+    const audioChunks = useRef([]);
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
-
-    const handleFileUpload = async () => {
-        if (!file) return;
-        setLoading(true);
-        
-        const formData = new FormData();
-        formData.append('audio', file);
-
+    // Media Player Start 
+    const handleStartRecording = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorderRef.current = new MediaRecorder(stream);
+            mediaRecorderRef.current.ondataavailable = (event) => {
+                // Checking if there is audio data
+                if (event.data.size > 0) {
+                    audioChunks.current.push(event.data);
+                }
+            };
 
-            console.log('Upload response:', response.data);
-            // Here you can analyze the response further if needed
+            // Stopping the media player converts the recording into .wav
+            mediaRecorderRef.current.onstop = () => {
+                const audioBlob = new Blob(audioChunks.current, { type: 'audio/wav' });
+                const audioURL = URL.createObjectURL(audioBlob);
+                setAudioURL(audioURL);
+                audioChunks.current = [];
+            };
+
+            mediaRecorderRef.current.start();
+            setIsRecording(true);
         } catch (error) {
-            console.error('Error uploading the file:', error);
-        } finally {
-            setLoading(false);
+            console.error('Error accessing microphone:', error);
         }
     };
 
+    // Stops recording
+    const handleStopRecording = () => {
+        mediaRecorderRef.current.stop();
+        setIsRecording(false);
+    };
+
+    // Downloads the .wav file
     return (
         <div>
             <h1>Public Speaking Analysis</h1>
-            <input type="file" accept="audio/wav" onChange={handleFileChange} />
-            <button onClick={handleFileUpload} disabled={loading}>
-                {loading ? "Analyzing..." : "Upload and Analyze"}
-            </button>
+            <div>
+                <button onClick={isRecording ? handleStopRecording : handleStartRecording}>
+                    {isRecording ? 'Stop Recording' : 'Start Recording'}
+                </button>
+            </div>
+            {audioURL && (
+                <div>
+                    <audio controls src={audioURL}></audio>
+                    <a href={audioURL} download="recording.wav">
+                        Download Recording
+                    </a>
+                </div>
+            )}
         </div>
     );
 };
 
 export default GetAudioFile;
-
