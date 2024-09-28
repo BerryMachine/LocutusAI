@@ -6,9 +6,13 @@ const path = require('path');
 const fs = require('fs');
 const { createClient } = require('@deepgram/sdk'); // Updated import
 require('dotenv').config();
+var cors = require('cors')
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+//Fix CORS
+app.use(cors())
 
 // Create a Deepgram client using the API key
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
@@ -41,12 +45,13 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
         console.dir(result, { depth: null });
 
         // Send the analysis result back to the client
-        res.json({
-            transcription: result.channel.alternatives[0].transcript,
-            utterances: result.channel.utterances,
-            confidence: result.channel.alternatives[0].confidence,
-            sentiment: result.channel.sentiment,
-        });
+        console.log(res)
+        // res.json({
+        //     transcription: result.channel.alternatives[0].transcript,
+        //     utterances: result.channel.utterances,
+        //     confidence: result.channel.alternatives[0].confidence,
+        //     sentiment: result.channel.sentiment,
+        // });
 
     } catch (error) {
         console.error('Error processing the audio file:', error);
