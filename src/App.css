@@ -114,7 +114,7 @@ button:hover {
     
     margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the section */
-    }
+}
 
 
 .section {
@@ -148,8 +148,6 @@ button:hover {
     margin-left: 10px; /* Space between text and icon */
     vertical-align: middle; /* Align the icon vertically with text */
 }
-
-
 
 
 /* Style the label as a button */

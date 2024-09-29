@@ -26,6 +26,7 @@ function App() {
     <button className = "bottomButton" onClick={() => scrollToSection('section1')}>Back</button>
 
       <div id="section1" className="section">
+
        <h1> <img src={section1lotus} alt="Icon" class="lotus" style={{ width: '650px', height: 'auto' }} /> </h1>
       </div>
       
@@ -48,7 +49,13 @@ function App() {
           </div>
         </div>
         
+        <h2> </h2>
       </div>
+      
+      <div id="section2" className="section">
+        
+      </div>
+
       <div id="section3" className="section">
         <h2>Transcript</h2>
       </div>
