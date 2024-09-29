@@ -24,12 +24,13 @@ function App() {
     <button className = "bottomButton" onClick={() => scrollToSection('section1')}>Back</button>
 
       <div id="section1" className="section">
-        <h2><img src={imgUrl} alt="Icon" class="mic-icon"></img> </h2>
+        <h2> </h2>
       </div>
       
       <div id="section2" className="section">
-        <h2>Features</h2>
+        <h2><img src={imgUrl} alt="Icon" class="mic-icon"></img></h2>
       </div>
+
       <div id="section3" className="section">
         <h2>Transcript</h2>
       </div>
