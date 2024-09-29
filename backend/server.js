@@ -37,13 +37,9 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
             model: 'nova-2',
             language: 'en',
             summarize: 'v2',
-            topics: true,
-            custom_topic: ['improvement'],
-            intents: true,
-            custom_intent: ['enthusiasm'],
             smart_format: true,
             utterances: true,
-            search: ['uh', 'uhh', 'uhhh', 'uhhhh', 'um', 'umm', 'ummm', 'ummmm', 'like', 'you know', 'mm', 'mmm', 'aaa', 'uuu'],
+            search: ['uh', 'um', 'like', 'you know', 'mmm', 'aaa', 'uuu'],
             filler_words: true,
             sentiment: true,
         });        
@@ -52,7 +48,8 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
         if (error) throw error; // Handle errors
 
         console.dir(result);
-        console.log('channel', result.results.channels[0].alternatives[0].words.filter(word => word.is_filler));
+        console.log('FILLER', result.results.channels[0].search);
+        console.log('SENTIMENT', result.results.sentiments);
 
         // Send the analysis result back to the client
         res.status(200).json({
@@ -61,12 +58,11 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
             confidence: result.results.channels[0].alternatives[0].confidence, 
             sentiment: result.results.sentiments, 
             summary: result.results.summary,  // Collect summary using summarize v2 option
-            topics: result.results.topics,    // Collect identified topics using topics option
-            intents: result.results.intents,  // Collect detected intents using custom intent
-            fillerWords: result.results.channels[0].alternatives[0].words.filter(word => word.is_filler),  // Collect filler words from the transcription
+            fillerWords: result.results.channels[0].search,  // Collect filler words from the transcription
             searchMatches: result.results.channels[0].alternatives[0].search_matches // Collect matches for custom search terms
         });
 
+        
 
     } catch (error) {
         console.error('Error processing the audio file:', error);
