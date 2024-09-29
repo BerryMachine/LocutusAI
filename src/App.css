@@ -1,12 +1,54 @@
 /* App.css */
+body {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39));
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
 
 .App {
-    font-family: Arial, sans-serif;
+    
     padding: 20px;
+}
+ 
+/* Style for buttons fixed on the right side of the page */
+.fixedButtons {
+    position: fixed;          /* Fix the buttons on the screen */
+    right: 20px;              /* Keep 20px space from the right edge */
+    top: 50%;                 /* Center vertically on the page */
+    display: flex;            /* Stack buttons vertically */
+    flex-direction: column;   /* Vertical column layout */
+    align-items: center;      /* Align buttons at the center */
+    gap: 10px;                /* Space between buttons */
+    z-index: 1000;            /* Make sure they stay on top of other elements */
   }
-  
-  button {
-    background-color: #4CAF50; /* Green background */
+
+
+.fixedButtons button {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(137, 207, 255); /* Green background */
+    color: white;              /* White text */
+    border: none;  
+    border-radius: 50%;            /* Remove border */
+    display: flex;
+    line-height: 60px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;     /* Remove underline */
+    display: inline-block;     /* Inline display */
+    font-size: 16px;           /* Increase font size */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 10px 2px;          /* Margin around the button */
+    cursor: pointer;           /* Pointer cursor on hover */
+    border-radius: 8px;        /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+button{
+    background-color: rgb(137, 207, 255); /* Green background */
     color: white;              /* White text */
     border: none;              /* Remove border */
     padding: 10px 20px;        /* Some padding */
@@ -17,24 +59,94 @@
     margin: 10px 2px;          /* Margin around the button */
     cursor: pointer;           /* Pointer cursor on hover */
     border-radius: 8px;        /* Rounded corners */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     transition: background-color 0.3s ease; /* Smooth transition for hover */
-  }
-  
-  button:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  buttonBottom{
-    
-  }
-  
-  .section {
-    height: 100vh; /* Full viewport height for each section */
+
+}
+
+.fixedButtons button:hover {
+    background-color: #290a96; /* Darker green on hover */
+}
+
+button:hover {
+    background-color: #290a96; /* Darker green on hover */
+}
+/* Fixed button to the bottom of the page */
+.bottomButton {
+    position: fixed;  /* Stick to a fixed position on the page */
+    bottom: 20px;     /* 20px from the bottom of the page */
+    right: 20px;      /* 20px from the right */
+    z-index: 1000;    /* Make sure it stays on top of other elements */
+}
+
+#section1 {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39)); /* Light blue background */
+    height: 100vh; /* Full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid #ddd; /* Light border for visual separation */
     margin: 20px 0;        /* Space between sections */
+    padding: 20px;         /* Padding inside the section */
+    }
+
+#section2 {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39)); /* Light blue background */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd; /* Light border for visual separation */
+    margin: 20px 0;        /* Space between sections */
+    padding: 20px;         /* Padding inside the section */
+    }
+
+#section3 {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39)); /* Light blue background */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd; /* Light border for visual separation */
+    margin: 20px 0;        /* Space between sections */
+    padding: 20px;         /* Padding inside the section */
+    }
+
+
+.section {
+    height: 100vh; /* Full viewport height for each section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(204, 184, 184); /* Light border for visual separation */
+    margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the sections */
-    background-color: #f9f9f9; /* Light background color */
-  }
+    background-color: #322b8a; /* Light background color */
+
+}
+/*Will have to add functionality to the file button*/
+
+/* Hide the default file input */
+.custom-file-input input[type="file"] {
+    display: none; /* Hide the input element */
+}
+
+/* Style the label as a button */
+.custom-file-input label {
+    display: inline-block; /* Allows padding and margins */
+    padding: 10px 20px; /* Add some padding */
+    background-color:rgb(137, 207, 255) ; /* Button color */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background change */
+}
+
+/* Change the button color on hover */
+.custom-file-input label:hover {
+    background-color: #290a96; /* Darker green on hover */
+    
+}
+
+
   
