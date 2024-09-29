@@ -6,6 +6,9 @@ import imgUrl2 from './brain.png';
 import test from './public-speaking.png';
 import section1lotus from './lotus.png';
 import lotus from './finalS1.png';
+import React from 'react';
+import GetAudioFile from './components/GetAudioFile';
+
 function App() {
 
   const scrollToSection = (sectionId) => {
@@ -51,13 +54,11 @@ function App() {
     <div className="App">
       <h1>LocutusAI</h1>
       <AudioRecorder />
-
     <div className='fixedButtons'>
       <button onClick={() => scrollToSection('section1')}>1</button>
       <button onClick={()=> scrollToSection('section2')}>2</button>
       <button onClick={()=> scrollToSection('section3')}>3</button>
 
-      {/* <button onClick={()=> recordVoice()} */}
     </div>
     <button className = "bottomButton" onClick={() => scrollToSection('section1')}>Back</button>
 
@@ -93,7 +94,7 @@ function App() {
           <button className="buttonSection" onClick={handleCustomButtonClick}>Choose File</button>
           <button className="buttonSection" onClick={uploadButton}>Upload and Analyze</button>
 
-          {/* Hidden File Input */}
+   
           <input
               type="file"
               ref={fileInputRef}
@@ -103,6 +104,7 @@ function App() {
         </div>
         
       </div>
+      <GetAudioFile />
     </div>
   );
 }
