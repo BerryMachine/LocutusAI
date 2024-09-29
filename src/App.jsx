@@ -55,8 +55,8 @@ function App() {
       <button onClick={() => scrollToSection('section1')}>1</button>
       <button onClick={()=> scrollToSection('section2')}>2</button>
       <button onClick={()=> scrollToSection('section3')}>3</button>
+
       {/* <button onClick={()=> recordVoice()} */}
-      
     </div>
     <button className = "bottomButton" onClick={() => scrollToSection('section1')}>Back</button>
 
@@ -105,10 +105,6 @@ function App() {
     </div>
   );
 }
-
-
-
-
 
 
 export default App;
