@@ -1,40 +1,215 @@
-/* App.css */
+body {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39));
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    height: 100vh;
+}
+
+.lotus {
+    width: 200px;
+    height: auto;
+}
 
 .App {
-    font-family: Arial, sans-serif;
     padding: 20px;
-  }
-  
-  button {
-    background-color: #4CAF50; /* Green background */
-    color: white;              /* White text */
-    border: none;              /* Remove border */
-    padding: 10px 20px;        /* Some padding */
-    text-align: center;        /* Center the text */
-    text-decoration: none;     /* Remove underline */
-    display: inline-block;     /* Inline display */
-    font-size: 16px;           /* Increase font size */
-    margin: 10px 2px;          /* Margin around the button */
-    cursor: pointer;           /* Pointer cursor on hover */
-    border-radius: 8px;        /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition for hover */
-  }
-  
-  button:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  /*buttonBottom{
-    
-  }*/
-  
-  .section {
-    height: 100vh; /* Full viewport height for each section */
+}
+
+.fixedButtons {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.fixedButtons button {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(137, 207, 255);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    line-height: 60px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button {
+    background-color: rgb(137, 207, 255);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.buttonSection {
+    padding: 10px 20px;
+}
+
+.fixedButtons button:hover,
+button:hover {
+    background-color: #290a96;
+}
+
+.bottomButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#section1 {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39));
+    background-image: ("/finalS1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd; /* Light border for visual separation */
-    margin: 20px 0;        /* Space between sections */
-    padding: 20px;         /* Padding inside the sections */
-    background-color: #f9f9f9; /* Light background color */
-  }
-  
+    position: relative;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+#section2 {
+    background: linear-gradient(to bottom, rgb(2, 11, 39), rgb(17, 65, 105));
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+#section3 {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39));
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.section {
+    transition: background-color 0.3s ease;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #322b8a;
+}
+
+.custom-file-input input[type="file"] {
+    display: none;
+}
+
+.custom-file-input {
+    position: absolute;
+    top: 170px;
+    left: 380px;
+}
+
+.section-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.custom-file-input label {
+    display: inline-block;
+    padding: 10px 40px;
+    background-color: rgb(137, 207, 255);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-input label:hover {
+    background-color: #290a96;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    height: 500px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.card h3 {
+    margin: 15px 0 10px 0;
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 20px;
+    color: lightgray;
+}
+
+.buttonSection {
+    padding: 20px 20px;
+    font-size: 16px;
+    background-color: rgb(137, 207, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 500px;
+    height: 100px;
+    margin-bottom: 7%;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}

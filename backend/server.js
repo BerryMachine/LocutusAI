@@ -20,6 +20,7 @@ const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 // Set up Multer for file uploads
 const upload = multer({ dest: 'uploads/' }); // Save uploads to the 'uploads' directory
 
+
 function calculateSpeakScore(filler_word_count, utterances_count, word_count) {
     const max_score = 10;
     
@@ -39,7 +40,6 @@ function calculateSpeakScore(filler_word_count, utterances_count, word_count) {
 
     return speak_score.toFixed(2);
 }
-
 
 
 // Define the /upload endpoint for audio file uploads
@@ -68,6 +68,7 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
 
 
         if (error) throw error; // Handle errors
+
 
         // SCORE SYSTEM
         var overall_speak_score;
@@ -101,8 +102,6 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
             summary: result.results.summary,  // Collect summary using summarize v2 option
             fillerWords: result.results.channels[0].search,  // Collect filler words from the transcription
         });
-
-        
 
     } catch (error) {
         console.error('Error processing the audio file:', error);
