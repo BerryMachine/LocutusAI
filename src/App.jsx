@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>LocutusAI</h1>
+      {/* <h1>LocutusAI</h1> */}
 
       <div className="fixedButtons">
         <button onClick={() => scrollToSection('section1')}>1</button>
@@ -56,7 +56,7 @@ function App() {
 
       <div id="section1" className="section">
         <h1>
-          <img src={lotus} alt="Icon" className="finalS1.png" style={{ width: '800px', height: 'auto' }} />
+          <img src={lotus} alt="Icon" className="no" style={{ width: '1400px', height: 'auto' }} />
         </h1>
       </div>
 
