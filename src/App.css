@@ -7,6 +7,10 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
 }
+.lotus {
+    width: 200px; /* Adjust this value as needed */
+    height: auto; /* This keeps the aspect ratio */
+  }
 
 .App {
     
@@ -164,6 +168,42 @@ button:hover {
     background-color: #290a96; /* Darker green on hover */
     
 }
+
+/* Styles for the cards in section 2 */
+.card-container {
+    display: flex;
+    flex-direction: row; /* Align cards horizontally */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 20px; /* Space between the cards */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for cards */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card shadow */
+    width: 300px; /* Set card width */
+    height: 500px; /* Increase card height */
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+.card img {
+    width: 100%; /* Ensure the image takes full width of the card */
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+}
+
+.card h3 {
+    margin: 15px 0 10px 0;
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 20px;
+    color: lightgray; /* Slightly lighter text */
+}
+
 
 
   
