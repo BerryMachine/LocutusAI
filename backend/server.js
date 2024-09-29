@@ -21,27 +21,6 @@ const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 const upload = multer({ dest: 'uploads/' }); // Save uploads to the 'uploads' directory
 
 
-function calculateSpeakScore(filler_word_count, utterances_count, word_count) {
-    const max_score = 10;
-    
-    // Factor for filler words and utterances
-    const filler_weight = 0.9;   // Heavier penalty on filler words
-    const utterance_weight = 0.7;  // Lighter penalty on utterances
-
-    // Calculate the impact of filler words and utterances proportionally to the word count
-    const filler_impact = (filler_word_count / word_count) * filler_weight;
-    const utterance_impact = (utterances_count / word_count) * utterance_weight;
-
-    // Reduce score based on both impacts
-    const score_penalty = (filler_impact + utterance_impact) * max_score;
-
-    // Calculate final speak score, ensuring it doesn't drop below 0
-    const speak_score = Math.max(max_score - score_penalty, 0);
-
-    return speak_score.toFixed(2);
-}
-
-
 // Define the /upload endpoint for audio file uploads
 app.post('/upload', upload.single('audio'), async (req, res) => {
     const audioFile = req.file; // Access the uploaded audio file
@@ -69,28 +48,6 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
 
         if (error) throw error; // Handle errors
 
-
-        // SCORE SYSTEM
-        var overall_speak_score;
-        var utterances_count;
-        var match_sentiment; // maybe add later
-        var filler_count = 0;
-        const filler_words_list = [' uh', 'Uh', ' um', 'Um', 'like', ' you know'];
-        const transcription = result.results.channels[0].alternatives[0].transcript;
-        const word_count = transcription.split(" ").length;
-
-
-        utterances_count = result.results.utterances.length;
-
-        filler_words_list.forEach(filler_word => {
-            const occurrences = transcription.split(filler_word).length - 1;
-            filler_count += occurrences;
-        });
-
-        overall_speak_score = calculateSpeakScore(filler_count, utterances_count, word_count);
-
-        console.log("how", utterances_count, filler_count, overall_speak_score);
-        console.log(result.results.channels[0].alternatives[0].transcript);
 
 
         // Send the analysis result back to the client

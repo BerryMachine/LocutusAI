@@ -208,8 +208,6 @@ button:hover {
 .button-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #f9f9f9;
+    background-color: linear-gradient(to bottom, rgb(2,11,39), rgb (17,65,105))
 }
+

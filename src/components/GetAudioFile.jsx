@@ -1,20 +1,50 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react';
 import axios from 'axios';
 
-const GetAudioFile = () => {
+function calculateSpeakScore(filler_word_count, utterances_count, word_count) {
+    const max_score = 10;
+
+    const filler_weight = 0.9;
+    const utterance_weight = 0.7;
+
+    const filler_impact = (filler_word_count / word_count) * filler_weight;
+    const utterance_impact = (utterances_count / word_count) * utterance_weight;
+
+    const score_penalty = (filler_impact + utterance_impact) * max_score;
+
+    const speak_score = Math.max(max_score - score_penalty, 0);
+
+    return speak_score.toFixed(2);
+}
+
+const GetAudioFile = forwardRef((props, ref) => {
     const [isRecording, setIsRecording] = useState(false);
     const [audioURL, setAudioURL] = useState('');
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [transcription, setTranscription] = useState('');
+    const [overallSpeakScore, setOverallSpeakScore] = useState(null);
+    const [fillerCount, setFillerCount] = useState(null);
+    const [utterancesCount, setUtterancesCount] = useState(null);
+
     const mediaRecorderRef = useRef(null);
     const audioChunks = useRef([]);
 
-    // Handle start of recording
+    useImperativeHandle(ref, () => ({
+        handleStartRecording,
+        handleStopRecording,
+        handleFileChange,
+        handleFileUpload,
+        getAudioURL,
+    }));
+
     const handleStartRecording = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             mediaRecorderRef.current = new MediaRecorder(stream);
+            audioChunks.current = [];
+
             mediaRecorderRef.current.ondataavailable = (event) => {
                 if (event.data.size > 0) {
                     audioChunks.current.push(event.data);
@@ -25,7 +55,12 @@ const GetAudioFile = () => {
                 const audioBlob = new Blob(audioChunks.current, { type: 'audio/wav' });
                 const audioURL = URL.createObjectURL(audioBlob);
                 setAudioURL(audioURL);
-                audioChunks.current = [];
+                setFile(audioBlob);
+
+                const downloadLink = document.createElement('a');
+                downloadLink.href = audioURL;
+                downloadLink.download = 'recording.wav';
+                downloadLink.click();
             };
 
             mediaRecorderRef.current.start();
@@ -36,13 +71,13 @@ const GetAudioFile = () => {
         }
     };
 
-    // Handle stop of recording
     const handleStopRecording = () => {
-        mediaRecorderRef.current.stop();
-        setIsRecording(false);
+        if (mediaRecorderRef.current && isRecording) {
+            mediaRecorderRef.current.stop();
+            setIsRecording(false);
+        }
     };
 
-    // Handle file selection from directory
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
@@ -53,7 +88,6 @@ const GetAudioFile = () => {
         }
     };
 
-    // Handle file upload for analysis
     const handleFileUpload = async () => {
         if (!file) return;
         setLoading(true);
@@ -63,8 +97,6 @@ const GetAudioFile = () => {
         formData.append('audio', file);
 
         try {
-            setLoading(true);
-      
             const response = await axios.post('http://localhost:5000/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -72,7 +104,25 @@ const GetAudioFile = () => {
             });
 
             if (response && response.data) {
-                console.log('Analysis Results:', response.data); 
+                console.log('Analysis Results:', response.data);
+
+                const transcriptionText = response.data.transcription;
+                const utterancesCount = response.data.utterances.length;
+                let fillerCount = 0;
+                const fillerWordsList = [' uh', 'Uh', ' um', 'Um', 'like', ' you know'];
+                const wordCount = transcriptionText.split(" ").length;
+
+                fillerWordsList.forEach(fillerWord => {
+                    const occurrences = transcriptionText.split(fillerWord).length - 1;
+                    fillerCount += occurrences;
+                });
+
+                const overallSpeakScore = calculateSpeakScore(fillerCount, utterancesCount, wordCount);
+
+                setTranscription(transcriptionText);
+                setOverallSpeakScore(overallSpeakScore);
+                setFillerCount(fillerCount);
+                setUtterancesCount(utterancesCount);
             } else {
                 console.error('Unexpected response format:', response);
                 setErrorMessage('Unexpected response from the server. Please try again.');
@@ -85,40 +135,37 @@ const GetAudioFile = () => {
         }
     };
 
+    const getAudioURL = () => audioURL;
+
     return (
-        <div>
-            <h1>Public Speaking Analysis</h1>
-
-            {/* Error Message Display */}
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-            {/* Recording Controls */}
-            <div>
-                <button onClick={isRecording ? handleStopRecording : handleStartRecording}>
-                    {isRecording ? 'Stop Recording' : 'Start Recording'}
-                </button>
+        <div className="audio-file-container">
+            <div className="button-container">
+                {audioURL && (
+                    <div>
+                        <audio controls src={audioURL}></audio>
+                        <a href={audioURL} download="recording.wav">
+                            Download Recording
+                        </a>
+                    </div>
+                )}
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             </div>
 
-            {/* Audio Playback and Download */}
-            {audioURL && (
-                <div>
-                    <audio controls src={audioURL}></audio>
-                    <a href={audioURL} download="recording.wav">
-                        Download Recording
-                    </a>
-                </div>
-            )}
+            <div className="analysis-results">
+                {transcription && (
+                    <>
+                        <h3>Transcription:</h3>
+                        <p>{transcription}</p>
 
-            {/* File Selection for Analysis */}
-            <div>
-                <h2>Upload a .wav File for Analysis</h2>
-                <input type="file" accept="audio/wav" onChange={handleFileChange} />
-                <button onClick={handleFileUpload} disabled={loading || !file}>
-                    {loading ? "Analyzing..." : "Upload and Analyze"}
-                </button>
+                        <h4>Analysis Summary:</h4>
+                        <p>Overall Speak Score: {overallSpeakScore}</p>
+                        <p>Number of Filler Words: {fillerCount}</p>
+                        <p>Number of Utterances: {utterancesCount}</p>
+                    </>
+                )}
             </div>
         </div>
     );
-};
+});
 
 export default GetAudioFile;
