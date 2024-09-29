@@ -5,6 +5,7 @@ import imgUrl from './mic.png';
 import imgUrl2 from './brain.png';
 import test from './public-speaking.png';
 import section1lotus from './lotus.png';
+import lotus from './finalS1.png';
 function App() {
 
   const scrollToSection = (sectionId) => {
@@ -61,14 +62,14 @@ function App() {
     <button className = "bottomButton" onClick={() => scrollToSection('section1')}>Back</button>
 
       <div id="section1" className="section">
+        <h1> <img src={lotus} alt="Icon" class="finalS1.png" style={{ width: '800px', height: 'auto' }} /> </h1> 
 
-       <h1> <img src={section1lotus} alt="Icon" class="lotus" style={{ width: '650px', height: 'auto' }} /> </h1>
       </div>
       
       <div id="section2" className="section">
       <div className="card-container">
           <div className="card">
-          <h2><img src={test} alt="Icon" class="public-speaking.png"></img> </h2>
+          <h2><img src={test} alt="Icon" class="/public-speaking.png"></img> </h2>
             <h3>Speech Enhancement & Text Conversion </h3>
             <p>Enhance your spoken content with real-time feedback. Convert your speech into text while improving clarity, removing filler words, and refining enunciation for a seamless transition from spoken to written form.</p>
           </div>
@@ -78,7 +79,7 @@ function App() {
             <p>Develop your public speaking skills with AI-driven analysis. Receive insights on pacing, tone, and clarity, tailored to help you deliver impactful speeches with confidence.</p>
           </div>
           <div className="card">
-          <h2><img src={imgUrl2} alt="Icon" class="brain.png"></img> </h2>
+          <h2><img src={imgUrl2} alt="Icon" class="/brain.png"></img> </h2>
             <h3>AI-Driven Communication Coach</h3>
             <p>Leverage cutting-edge AI technology to analyze your speech patterns, providing personalized feedback to enhance your speaking abilities. Gain insights into areas of improvement with a focus on clarity, speed, and overall delivery..</p>
           </div>

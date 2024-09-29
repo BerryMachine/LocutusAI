@@ -1,4 +1,5 @@
 /* App.css */
+
 body {
     background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39));
     margin: 0;
@@ -6,6 +7,7 @@ body {
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
+    height: 100vh;
 }
 .lotus {
     width: 200px; /* Adjust this value as needed */
@@ -89,10 +91,16 @@ button:hover {
 
 #section1 {
     background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39)); /* Light blue background */
-    height: 100vh; /* Full viewport height */
+    background-image: ("/finalS1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width; */
+
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     
     margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the section */
