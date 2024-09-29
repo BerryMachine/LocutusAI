@@ -1,11 +1,14 @@
-Do npm i
+**Below is the way to run the backend and frontend togther. Type the commands in your terminal/IDEA terminal to run the code **
+
+
+Install npm java:
+Do npm i 
 
 To run:
+cd backend  (the name of the file is backend)
 
-cd backend
-
-node server.js
+node server.js  
 
 cd..
 
-npm run dev
+npm run dev   (this will produce the results)
