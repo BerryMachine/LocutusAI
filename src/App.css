@@ -85,18 +85,18 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd; /* Light border for visual separation */
+    
     margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the section */
     }
 
 #section2 {
-    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39)); /* Light blue background */
+    background: linear-gradient(to bottom,  rgb(2, 11, 39),rgb(17, 65, 105)); /* Light blue background */
     height: 100vh; /* Full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd; /* Light border for visual separation */
+    
     margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the section */
     }
@@ -107,7 +107,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd; /* Light border for visual separation */
+    
     margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the section */
     }
@@ -118,7 +118,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(204, 184, 184); /* Light border for visual separation */
+   
     margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the sections */
     background-color: #322b8a; /* Light background color */
@@ -129,18 +129,29 @@ button:hover {
 /* Hide the default file input */
 .custom-file-input input[type="file"] {
     display: none; /* Hide the input element */
-    .custom-file-input {
-    position: absolute;   /* Position relative to the nearest positioned ancestor */
-    top: 50px;            /* Adjust this value to set vertical position */
-    left: 50px;           /* Adjust this value to set horizontal position */
 }
 
+.custom-file-input {
+    position: absolute;   /* Position relative to the nearest positioned ancestor */
+    top: 170px;            /* Adjust this value to set vertical position */
+    left: 380px;           /* Adjust this value to set horizontal position */
 }
+
+/* Style the icon in the section */
+.section-icon {
+    width: 30px;      /* Set the width for the icon */
+    height: 30px;     /* Set the height for the icon */
+    margin-left: 10px; /* Space between text and icon */
+    vertical-align: middle; /* Align the icon vertically with text */
+}
+
+
+
 
 /* Style the label as a button */
 .custom-file-input label {
     display: inline-block; /* Allows padding and margins */
-    padding: 10px 20px; /* Add some padding */
+    padding: 10px 40px; /* Add some padding */
     background-color:rgb(137, 207, 255) ; /* Button color */
     color: white; /* Text color */
     border-radius: 5px; /* Rounded corners */

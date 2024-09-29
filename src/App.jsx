@@ -1,6 +1,7 @@
 import React from 'react';
 import AudioRecorder from './components/GetAudioFile';
 import './App.css';
+import imgUrl from './mic.png';
 
 function App() {
   const scrollToSection = (sectionId) => {
@@ -23,9 +24,9 @@ function App() {
     <button className = "bottomButton" onClick={() => scrollToSection('section1')}>Back</button>
 
       <div id="section1" className="section">
-        <h2>Front page</h2>
-        <p></p>
+        <h2><img src={imgUrl} alt="Icon" class="mic-icon"></img> </h2>
       </div>
+      
       <div id="section2" className="section">
         <h2>Features</h2>
       </div>
