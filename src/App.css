@@ -68,6 +68,10 @@ button{
 
 }
 
+.buttonSection{
+    padding: 10px 20px;
+}
+
 .fixedButtons button:hover {
     background-color: #290a96; /* Darker green on hover */
 }
@@ -110,10 +114,12 @@ button:hover {
     height: 100vh; /* Full viewport height */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     
     margin: 20px 0;        /* Space between sections */
     padding: 20px;         /* Padding inside the section */
+
+    
 }
 
 
@@ -202,6 +208,23 @@ button:hover {
     color: lightgray; /* Slightly lighter text */
 }
 
+.buttonSection{
+    padding: 20px 20px;
+    font-size: 16px;
+    background-color: (137, 207, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 500px;  /* Fixed width */
+    height: 100px;  /* Fixed height */
+    margin-bottom: 7%;
+}
 
-
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    
+  }
   
