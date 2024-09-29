@@ -34,7 +34,7 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
 
         // Call the transcribeFile method with the audio payload and options
         const { result, error } = await deepgram.listen.prerecorded.transcribeFile(audioData, {
-            model: 'nova-2',
+            model: 'nova',
             language: 'en',
             summarize: 'v2',
             smart_format: true,
