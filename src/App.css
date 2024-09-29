@@ -129,6 +129,12 @@ button:hover {
 /* Hide the default file input */
 .custom-file-input input[type="file"] {
     display: none; /* Hide the input element */
+    .custom-file-input {
+    position: absolute;   /* Position relative to the nearest positioned ancestor */
+    top: 50px;            /* Adjust this value to set vertical position */
+    left: 50px;           /* Adjust this value to set horizontal position */
+}
+
 }
 
 /* Style the label as a button */
