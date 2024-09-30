@@ -31,7 +31,7 @@ body {
 .fixedButtons button {
     width: 30px;
     height: 30px;
-    background: linear-gradient(60deg, #799df1 5%, #60c1ec 15%, #7bd9de 25%, #cfb0d2 35%, #799df1 45%, #60c1ec 55%, #7bd9de 65%, #cfb0d2 75%, #799df1 85%, #60c1ec 95%, #7bd9de);
+    background: linear-gradient(60deg, #799df1 10%, #60c1ec 25%, #7bd9de 40%, #cfb0d2 55%, #799df1 70%, #60c1ec 85%, #7bd9de);
     color: white;
     border: none;
     border-radius: 50%;
@@ -50,7 +50,7 @@ body {
 }
 
 button {
-    background: linear-gradient(60deg, #799df1 5%, #60c1ec 15%, #7bd9de 25%, #cfb0d2 35%, #799df1 45%, #60c1ec 55%, #7bd9de 65%, #cfb0d2 75%, #799df1 85%, #60c1ec 95%, #7bd9de);
+    background: linear-gradient(60deg, #799df1 10%, #60c1ec 25%, #7bd9de 40%, #cfb0d2 55%, #799df1 70%, #60c1ec 85%, #7bd9de);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -114,6 +114,17 @@ button:hover {
     margin: 20px 0;
     padding: 20px;
 }
+
+#section4 {
+    background: linear-gradient(to bottom, rgb(17, 65, 105), rgb(2, 11, 39));
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 20px 0;
+    padding: 20px;
+}
+
 
 .section {
     transition: background-color 0.3s ease;
@@ -199,7 +210,8 @@ button:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 30px;
+    margin-left: 70px;
     width: 500px;
     height: 100px;
     margin-bottom: 7%;
